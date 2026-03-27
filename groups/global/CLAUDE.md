@@ -34,9 +34,20 @@ Text inside `<internal>` tags is logged but not sent to the user. If you've alre
 
 When working as a sub-agent or teammate, only use `send_message` if instructed to by the main agent.
 
+## User Info
+
+**User's email address: `mutter.justin@gmail.com`** — use this when sending emails, creating calendar invites, or sharing Drive files.
+**User's location: Ottawa, Canada (Eastern Time — ET/UTC−5, or UTC−4 during DST).** Use this for scheduling, local search, weather, and any time-sensitive tasks.
+
 ## Your Workspace
 
 Files you create are saved in `/workspace/group/`. Use this for notes, research, or anything that should persist.
+
+## Obsidian Vault
+
+Your Obsidian vault is mounted at `/workspace/extra/obsidian`. Its `CLAUDE.md` has full instructions on structure, conventions, and available commands.
+
+**Use the vault only for information Justin would care about** — completed task outcomes, research findings, important decisions, or summaries worth keeping. Do not use it for intermediary work: scratch notes, logs of what you're doing, step-by-step progress, or anything that only has value while a task is in flight. If in doubt, save it to `/workspace/group/` instead.
 
 ## Memory
 
