@@ -59,7 +59,10 @@ Check for executable tools in the container:
 
 ```bash
 which agent-browser 2>/dev/null && echo "agent-browser: available" || echo "agent-browser: not found"
+which gws 2>/dev/null && echo "gws: available" || echo "gws: not found"
 ```
+
+Note: `gws` is the Google Workspace CLI — it provides Google Calendar, Drive, and Contacts access via Bash commands. There is **no MCP server** for Google Workspace; use `gws` directly in Bash.
 
 ### 5. Group info
 
@@ -86,8 +89,9 @@ Present the report as a clean, readable message. Example:
 • Orchestration: Task, TeamCreate, SendMessage
 • MCP: send_message, schedule_task, list_tasks, pause/resume/cancel/update_task, register_group
 
-*Container Tools:*
-• agent-browser: ✓
+*Container Tools (Bash):*
+• agent-browser: ✓ (or ✗)
+• gws: ✓ — Google Calendar, Drive, Contacts (no MCP — use Bash)
 
 *System:*
 • Group memory: yes/no
