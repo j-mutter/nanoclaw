@@ -27,6 +27,7 @@ import {
   PROXY_BIND_HOST,
 } from './container-runtime.js';
 import {
+  deleteSession,
   getAllChats,
   getAllRegisteredGroups,
   getAllSessions,
@@ -301,9 +302,20 @@ async function runAgent(
   // Wrap onOutput to track session ID from streamed results
   const wrappedOnOutput = onOutput
     ? async (output: ContainerOutput) => {
-        if (output.newSessionId) {
+        if (output.newSessionId && output.status !== 'error') {
           sessions[group.folder] = output.newSessionId;
           setSession(group.folder, output.newSessionId);
+        }
+        if (
+          output.status === 'error' &&
+          output.error?.includes('No conversation found with session ID')
+        ) {
+          delete sessions[group.folder];
+          deleteSession(group.folder);
+          logger.warn(
+            { group: group.name },
+            'Cleared stale session ID after session-not-found error',
+          );
         }
         await onOutput(output);
       }
@@ -325,7 +337,7 @@ async function runAgent(
       wrappedOnOutput,
     );
 
-    if (output.newSessionId) {
+    if (output.newSessionId && output.status !== 'error') {
       sessions[group.folder] = output.newSessionId;
       setSession(group.folder, output.newSessionId);
     }

@@ -553,7 +553,6 @@ async function main(): Promise<void> {
     writeOutput({
       status: 'error',
       result: null,
-      newSessionId: sessionId,
       error: errorMessage
     });
     process.exit(1);
